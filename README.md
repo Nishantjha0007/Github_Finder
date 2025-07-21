@@ -26,19 +26,13 @@ A sleek and modern web app that lets you search any GitHub user and explore thei
 
 ---
 
-## 🌟 Screenshots
-<img width="936" height="415" alt="image" src="https://github.com/user-attachments/assets/cbc53ff6-544d-49bf-8055-c3c91782e4f1" />
-<img width="867" height="327" alt="image" src="https://github.com/user-attachments/assets/5d754e7a-7d88-426f-be8c-8cfd3de99111" />
-
-
 ### 🌞 Light Mode
 
-![Light Mode Screenshot](https://user-images.githubusercontent.com/your-light-image-link.png)
+<img width="867" height="327" alt="image" src="https://github.com/user-attachments/assets/5d754e7a-7d88-426f-be8c-8cfd3de99111" />
 
 ### 🌚 Dark Mode
 
-![Dark Mode Screenshot](https://user-images.githubusercontent.com/your-dark-image-link.png)
-
+<img width="936" height="415" alt="image" src="https://github.com/user-attachments/assets/cbc53ff6-544d-49bf-8055-c3c91782e4f1" />
 > Replace with real screenshots or paste your hosted image links.
 
 ---

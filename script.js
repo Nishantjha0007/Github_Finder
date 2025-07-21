@@ -31,7 +31,6 @@ async function searchUser() {
   if (!username) return alert("Please enter a username");
 
   try {
-    // reset the UI
     profileContainer.classList.add("hidden");
     errorContainer.classList.add("hidden");
 
@@ -39,8 +38,6 @@ async function searchUser() {
     if (!response.ok) throw new Error("User not found");
 
     const userData = await response.json();
-    console.log("user data is here", userData);
-
     displayUserData(userData);
 
     fetchRepositories(userData.repos_url);
@@ -83,22 +80,12 @@ function displayRepos(repos) {
       <div class="repo-meta">
         ${
           repo.language
-            ? `
-          <div class="repo-meta-item">
-            <i class="fas fa-circle"></i> ${repo.language}
-          </div>
-        `
+            ? `<div class="repo-meta-item"><i class="fas fa-circle"></i> ${repo.language}</div>`
             : ""
         }
-        <div class="repo-meta-item">
-          <i class="fas fa-star"></i> ${repo.stargazers_count}
-        </div>
-        <div class="repo-meta-item">
-          <i class="fas fa-code-fork"></i> ${repo.forks_count}
-        </div>
-        <div class="repo-meta-item">
-          <i class="fas fa-history"></i> ${updatedAt}
-        </div>
+        <div class="repo-meta-item"><i class="fas fa-star"></i> ${repo.stargazers_count}</div>
+        <div class="repo-meta-item"><i class="fas fa-code-fork"></i> ${repo.forks_count}</div>
+        <div class="repo-meta-item"><i class="fas fa-history"></i> ${updatedAt}</div>
       </div>
     `;
 
@@ -120,8 +107,7 @@ function displayUserData(user) {
   following.textContent = user.following;
   repos.textContent = user.public_repos;
 
-  if (user.company) companyElement.textContent = user.company;
-  else companyElement.textContent = "Not specified";
+  companyElement.textContent = user.company || "Not specified";
 
   if (user.blog) {
     blogElement.textContent = user.blog;
@@ -143,7 +129,6 @@ function displayUserData(user) {
 
   twitterContainer.style.display = "flex";
 
-  // show the profile
   profileContainer.classList.remove("hidden");
 }
 
@@ -160,5 +145,38 @@ function formatDate(dateString) {
   });
 }
 
-// Clear input on page load
+// Clear the input on load
 searchInput.value = "";
+
+// ============================
+// 💡 Light/Dark Theme Toggle
+// ============================
+const themeToggle = document.getElementById("theme-toggle");
+const themeLabel = document.getElementById("theme-label");
+const themeIcon = document.getElementById("theme-icon");
+
+// Load saved theme from localStorage
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light-mode");
+  themeLabel.textContent = "LIGHT";
+  themeIcon.textContent = "🌞";
+} else {
+  document.body.classList.remove("light-mode");
+  themeLabel.textContent = "DARK";
+  themeIcon.textContent = "🌙";
+}
+
+// Toggle theme on click
+themeToggle.addEventListener("click", () => {
+  const isLight = document.body.classList.toggle("light-mode");
+
+  if (isLight) {
+    themeLabel.textContent = "LIGHT";
+    themeIcon.textContent = "🌞";
+    localStorage.setItem("theme", "light");
+  } else {
+    themeLabel.textContent = "DARK";
+    themeIcon.textContent = "🌙";
+    localStorage.setItem("theme", "dark");
+  }
+});

@@ -31,11 +31,10 @@ async function searchUser() {
   if (!username) return alert("Please enter a username");
 
   try {
-    // reset the ui
+    // reset the UI
     profileContainer.classList.add("hidden");
     errorContainer.classList.add("hidden");
 
-    // https://api.github.com/users/burakorkmez
     const response = await fetch(`https://api.github.com/users/${username}`);
     if (!response.ok) throw new Error("User not found");
 
@@ -161,5 +160,5 @@ function formatDate(dateString) {
   });
 }
 
-searchInput.value = "burakorkmez";
-searchUser();
+// Clear input on page load
+searchInput.value = "";
